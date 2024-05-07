@@ -60,6 +60,7 @@ java -jar labirinto-ratos.jar
 > - Para modificar o código-fonte, faça as alterações desejadas e recompile o projeto usando o comando javac -d bin src/*.java.
 > - Para executar o projeto com as alterações, gere um novo arquivo JAR e execute-o conforme as instruções acima.
 
+
 ## 🧠 Algoritmos Utilizados
 - Busca em Largura (BFS): Garante que encontraremos o caminho mais curto para o queijo, se houver um caminho disponível.
 - Geração de Labirintos: Utiliza uma adaptação do algoritmo de Prim para criar labirintos complexos e solucionáveis.
