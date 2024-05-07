@@ -36,8 +36,8 @@ public class Maze {
 
         Random random = new Random();
         // Escolha um ponto de partida aleatório e remova a parede para essa célula
-        int startX = random.nextInt(width);
-        int startY = random.nextInt(height);
+        int startX = 0;
+        int startY = 0;
         walls[startX][startY] = false;
         openPositions.add(new Position(startX, startY));
 
@@ -88,11 +88,7 @@ public class Maze {
         } while (walls[cheeseX][cheeseY]); // Garante que o queijo não esteja numa parede
         goalPosition = new Position(cheeseX, cheeseY);*/
         /*System.out.println("Queijo posicionado na posição: " + goalPosition);*/
-        if (!openPositions.isEmpty()) {
-            Random random = new Random();
-            goalPosition = openPositions.get(random.nextInt(openPositions.size())); // Escolhe uma posição aberta para o queijo
-            System.out.println("Queijo posicionado na posição: " + goalPosition);
-        }
+        goalPosition = new Position(0, 0);
     }
 
     public Position getGoalPosition() {

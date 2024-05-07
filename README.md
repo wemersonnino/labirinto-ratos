@@ -1,11 +1,26 @@
-# 🌟 Labirinto Ratos Simulator
+# 🌟 Labirinto com Threads Simulator 
 
-Bem-vindo ao Labirinto Ratos Simulator! Este projeto é um simulador interativo onde ratos 🐭 tentam encontrar um pedaço de queijo 🧀 em um labirinto complexo. Aprenda sobre algoritmos de busca e veja-os em ação neste divertido e educativo simulador.
+Bem-vindo ao Labirinto com Threads Simulator! Este projeto é um simulador interativo onde ratos 🐭 tentam encontrar um pedaço de queijo 🧀 em um labirinto complexo. Aprenda sobre algoritmos de busca uso de Threads e veja-os em ação neste divertido e educativo simulador.
+
+## 📋 Tabela de Conteúdos
+- [Funcionalidades](#-funcionalidades)
+- [Pré-requisitos](#-pré-requisitos)
+- [Instalação](#️-instalação)
+- [Como Usar](#️-como-usar)
+- [Algoritmos Utilizados](#-algoritmos-utilizados)
+- [Melhorias Futuras](#-melhorias-futuras)
+- [Contribuições](#-contribuições)
+- [Licença](#-licença)
+- [Contato](#-contato)
+- [Link do Projeto](#-link-do-projeto)
+
+## 🎯 Objetivo: 
+implementar um labirinto e sua solução utilizando threads.
 
 ## 🚀 Funcionalidades
 Geração Automática de Labirintos: Cada sessão começa com um novo labirinto, gerado aleatoriamente.
-Simulação de Busca: Ratos virtuais usam o algoritmo de busca em largura (BFS) para encontrar o caminho até o queijo.
-Interface Gráfica: Visualize todo o processo em uma interface gráfica amigável.
+Simulação de Busca: Ratos virtuais, cada rato é uma thread e os ratos usam o algoritmo de busca em largura (BFS) para encontrar o caminho até o queijo.
+Interface Gráfica: Visualize todo o processo em uma interface gráfica amigável, além de acompanha a execução das threads no console da aplicação.
 ## 📋 Pré-requisitos
 > Antes de iniciar, certifique-se de ter instalado:
 
@@ -16,15 +31,35 @@ Interface Gráfica: Visualize todo o processo em uma interface gráfica amigáve
 
 ```bash
 Copy code
-git clone https://github.com/seuusuario/maze-simulator.git
+git clone https://github.com/wemersonnino/labirinto-ratos.git
 ```
 ## ⚙️ Como Usar
 > Para iniciar o simulador, navegue até o diretório do projeto e execute:
 
 ```bash
 Copy code
-java -jar MazeSimulator.jar
+javac -d bin src/*.java
 ```
+```bash
+Copy code
+Main-Class: labirinto-ratos.package.MainClass
+```
+```bash
+Copy code
+Mjar cvfm labirinto-ratos.jar manifest.txt -C bin .
+```
+```bash
+Copy code
+java -jar labirinto-ratos.jar
+``` 
+> - A aplicação irá gerar um novo labirinto e iniciar a simulação. Cada rato irá tentar encontrar o queijo, e você poderá acompanhar o progresso no console.
+> - Para encerrar a simulação, pressione a tecla "Enter" no console.
+> - Para iniciar uma nova simulação, execute o comando java -jar labirinto-ratos.jar novamente.
+> - Divirta-se explorando o labirinto e aprendendo sobre algoritmos de busca e uso de Threads!
+> - Para visualizar o código-fonte, abra o projeto em sua IDE favorita e explore os arquivos na pasta src.
+> - Para modificar o código-fonte, faça as alterações desejadas e recompile o projeto usando o comando javac -d bin src/*.java.
+> - Para executar o projeto com as alterações, gere um novo arquivo JAR e execute-o conforme as instruções acima.
+
 ## 🧠 Algoritmos Utilizados
 - Busca em Largura (BFS): Garante que encontraremos o caminho mais curto para o queijo, se houver um caminho disponível.
 - Geração de Labirintos: Utiliza uma adaptação do algoritmo de Prim para criar labirintos complexos e solucionáveis.
