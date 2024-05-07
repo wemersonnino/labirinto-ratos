@@ -1,6 +1,6 @@
-# 🌟 Maze Simulator
+# 🌟 Labirinto Ratos Simulator
 
-Bem-vindo ao Maze Simulator! Este projeto é um simulador interativo onde ratos 🐭 tentam encontrar um pedaço de queijo 🧀 em um labirinto complexo. Aprenda sobre algoritmos de busca e veja-os em ação neste divertido e educativo simulador.
+Bem-vindo ao Labirinto Ratos Simulator! Este projeto é um simulador interativo onde ratos 🐭 tentam encontrar um pedaço de queijo 🧀 em um labirinto complexo. Aprenda sobre algoritmos de busca e veja-os em ação neste divertido e educativo simulador.
 
 ## 🚀 Funcionalidades
 Geração Automática de Labirintos: Cada sessão começa com um novo labirinto, gerado aleatoriamente.
