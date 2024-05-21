@@ -13,7 +13,7 @@ public class MazeGUI extends JFrame {
 
     public MazeGUI(Maze maze, List<Rat> rats) {
         this.maze = maze;
-        this.rats = new CopyOnWriteArrayList<>(rats); // Thread-safe list
+        this.rats = new CopyOnWriteArrayList<>(rats);
         initializeUI();
     }
 
@@ -29,24 +29,18 @@ public class MazeGUI extends JFrame {
         resetButton.addActionListener(e -> resetMaze());
         add(resetButton, BorderLayout.SOUTH);
 
-        // É importante chamar pack() após todos os componentes serem adicionados
         pack();
-        // Depois de embalar, verifique se a janela tem um tamanho mínimo
         setMinimumSize(new Dimension(maze.getWidth() * CELL_SIZE + 20, maze.getHeight() * CELL_SIZE + 100));
         setVisible(true);
     }
 
-
     public void resetMaze() {
-        // Finaliza as threads dos ratos existentes
         rats.forEach(Thread::interrupt);
-        rats.clear(); // Limpa a lista de ratos
+        rats.clear();
 
-        // Gera um novo labirinto
         maze.generateMaze();
         maze.placeCheese();
 
-        // Cria novos ratos e os adiciona ao labirinto e à lista
         for (int i = 0; i < 5; i++) {
             Position startPosition;
             do {
@@ -59,11 +53,9 @@ public class MazeGUI extends JFrame {
             newRat.start();
         }
 
-        SwingUtilities.invokeLater(this::repaint); // Repinta a interface gráfica
-
-        repaint(); // Repinta a interface gráfica
+        SwingUtilities.invokeLater(this::repaint);
+        repaint();
     }
-
 
     public void notifyRatHasWon(Rat rat) {
         SwingUtilities.invokeLater(() -> {
@@ -77,22 +69,18 @@ public class MazeGUI extends JFrame {
         });
     }
 
-
-
     private class MazePanel extends JPanel {
         public MazePanel() {
             setPreferredSize(new Dimension(maze.getWidth() * CELL_SIZE, maze.getHeight() * CELL_SIZE));
-            setBackground(Color.GRAY); // Definir uma cor de fundo para diagnóstico
+            setBackground(Color.GRAY);
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-//            System.out.println("paintComponent em MazeGUI Desenhando o labirinto...");
             System.out.println("Iniciando paintComponent na thread: " + Thread.currentThread().getName());
             drawMaze(g);
             drawRats(g);
-//            System.out.println("Labirinto desenhado. paintComponent em MazeGUI");
             System.out.println("Terminando paintComponent na thread: " + Thread.currentThread().getName());
         }
 
@@ -100,9 +88,6 @@ public class MazeGUI extends JFrame {
             for (int x = 0; x < maze.getWidth(); x++) {
                 for (int y = 0; y < maze.getHeight(); y++) {
                     boolean wall = maze.isWall(new Position(x, y));
-                    // Log para depuração
-//                    System.out.println("Cell at (" + x + ", " + y + ") is a wall? " + wall);
-
                     if (wall) {
                         g.setColor(Color.BLACK);
                     } else {
@@ -111,11 +96,10 @@ public class MazeGUI extends JFrame {
                     g.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
                 }
             }
-            // Desenhar o queijo
             if (maze.getGoalPosition() != null) {
-                g.setColor(Color.YELLOW); // Define a cor do queijo para amarelo
-                Position cheesePos = maze.getGoalPosition(); // Obtém a posição do queijo
-                g.fillRect(cheesePos.getX() * CELL_SIZE, cheesePos.getY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);  // Pinta o quadrado na posição do queijo
+                g.setColor(Color.YELLOW);
+                Position cheesePos = maze.getGoalPosition();
+                g.fillRect(cheesePos.getX() * CELL_SIZE, cheesePos.getY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
         }
 
@@ -126,6 +110,5 @@ public class MazeGUI extends JFrame {
                 g.fillOval(pos.getX() * CELL_SIZE, pos.getY() * CELL_SIZE, CELL_SIZE, CELL_SIZE);
             }
         }
-
     }
 }

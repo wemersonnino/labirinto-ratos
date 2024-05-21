@@ -5,7 +5,7 @@ public class Rat extends Thread {
     private Position position;
     private final Maze maze;
     private final MazeGUI gui;
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public Rat(Maze maze, Position startPosition, MazeGUI gui) {
         this.maze = maze;
@@ -30,46 +30,42 @@ public class Rat extends Thread {
 
     private void bfsMove() {
         Queue<Position> queue = new LinkedList<>();
-        Set<Position> visited = new HashSet<>();  // Conjunto para rastrear posições visitadas
-        queue.offer(position);  // Inicia a fila com a posição inicial do rato
-        visited.add(position);  // Marca a posição inicial como visitada
+        Set<Position> visited = new HashSet<>();
+        queue.offer(position);
+        visited.add(position);
 
         while (!queue.isEmpty() && !Thread.currentThread().isInterrupted()) {
             Position current = queue.poll();
             System.out.println("Thread " + Thread.currentThread().getName() + " visitando: " + current);
-            setPosition(current); // Atualiza a posição do rato no labirinto
+            setPosition(current);
 
-            // Verifica se o rato alcançou o objetivo
             if (current.equals(maze.getGoalPosition())) {
                 gui.notifyRatHasWon(this);
                 break;
             }
 
-            // Itera sobre todas as posições possíveis a partir da posição atual
             for (Position next : getPossibleMoves(current)) {
-                if (!visited.contains(next) && !maze.isWall(next)) {  // Checa se não é parede e se não foi visitado
-                    visited.add(next);  // Marca como visitado
-                    queue.offer(next);  // Adiciona à fila para futura exploração
+                if (!visited.contains(next) && !maze.isWall(next)) {
+                    visited.add(next);
+                    queue.offer(next);
                 }
             }
 
-            SwingUtilities.invokeLater(gui::repaint); // Solicita a repintura da GUI
+            SwingUtilities.invokeLater(gui::repaint);
             try {
-                Thread.sleep(500); // Pausa para tornar os movimentos visíveis
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println("Thread " + Thread.currentThread().getName() + " interrompida.");
-                break; // Interrompe se a thread for interrompida
+                break;
             }
         }
     }
 
-
     private List<Position> getPossibleMoves(Position pos) {
         List<Position> moves = new ArrayList<>();
-        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Direções: cima, direita, baixo, esquerda
-
+        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         List<int[]> shuffledDirections = Arrays.asList(directions);
-        Collections.shuffle(shuffledDirections, random);  // Embaralha as direções
+        Collections.shuffle(shuffledDirections, random);
 
         for (int[] d : shuffledDirections) {
             int nx = pos.getX() + d[0];
