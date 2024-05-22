@@ -27,5 +27,5 @@ replay_pid*
 # IntelliJ project files
 .idea
 *.iml
-out
+out/
 gen
